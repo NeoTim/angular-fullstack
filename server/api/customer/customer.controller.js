@@ -2,7 +2,11 @@
 
 var _ = require('lodash');
 var Customer = require('./customer.model');
-
+Customer.find(function (err, customers) {
+  console.log(customers)
+    // if(err) { return handleError(res, err); }
+    // return res.json(200, customers);
+  });
 // Get list of customers
 exports.index = function(req, res) {
   Customer.find(function (err, customers) {
