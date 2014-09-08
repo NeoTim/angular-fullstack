@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularFullstackApp'));
+  beforeEach(module('dashboardSassApp'));
   beforeEach(module('socketMock'));
 
   var MainCtrl,
@@ -24,8 +24,6 @@ describe('Controller: MainCtrl', function () {
 
   it('should attach a list of things to the scope', function () {
     $httpBackend.flush();
-    // expect(scope.awesomeThings.length).toBe(4);
-    expect(4).toBe(4);
-
+    expect(scope.awesomeThings.length).toBe(4);
   });
 });

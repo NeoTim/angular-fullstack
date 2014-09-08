@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('dashboardSassApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('login', {

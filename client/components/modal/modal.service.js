@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('dashboardSassApp')
   .factory('Modal', function ($rootScope, $modal) {
     /**
      * Opens a modal

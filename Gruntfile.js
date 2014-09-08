@@ -1,4 +1,4 @@
-// Generated on 2014-09-08 using generator-angular-fullstack 2.0.13
+// Generated on 2014-09-08 using generator-angular-fullstack 2.0.12
 'use strict';
 
 module.exports = function (grunt) {
@@ -80,15 +80,15 @@ module.exports = function (grunt) {
         ],
         tasks: ['newer:jshint:all', 'karma']
       },
-      injectStylus: {
+      injectSass: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/*.styl'],
-        tasks: ['injector:stylus']
+          '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
+        tasks: ['injector:sass']
       },
-      stylus: {
+      sass: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/*.styl'],
-        tasks: ['stylus', 'autoprefixer']
+          '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
+        tasks: ['sass', 'autoprefixer']
       },
       jade: {
         files: [
@@ -316,7 +316,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       options: {
         // This should be the name of your apps angular module
-        module: 'angularFullstackApp',
+        module: 'dashboardSassApp',
         htmlmin: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
@@ -411,11 +411,11 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'jade',
-        'stylus',
+        'sass',
       ],
       test: [
         'jade',
-        'stylus',
+        'sass',
       ],
       debug: {
         tasks: [
@@ -428,7 +428,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'jade',
-        'stylus',
+        'sass',
         'imagemin',
         'svgmin'
       ]
@@ -492,19 +492,19 @@ module.exports = function (grunt) {
       }
     },
 
-    // Compiles Stylus to CSS
-    stylus: {
+    // Compiles Sass to CSS
+    sass: {
       server: {
         options: {
-          paths: [
+          loadPath: [
             '<%= yeoman.client %>/bower_components',
             '<%= yeoman.client %>/app',
             '<%= yeoman.client %>/components'
           ],
-          "include css": true
+          compass: false
         },
         files: {
-          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.styl'
+          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.scss'
         }
       }
     },
@@ -534,8 +534,8 @@ module.exports = function (grunt) {
         }
       },
 
-      // Inject component styl into app.styl
-      stylus: {
+      // Inject component scss into app.scss
+      sass: {
         options: {
           transform: function(filePath) {
             filePath = filePath.replace('/client/app/', '');
@@ -546,9 +546,9 @@ module.exports = function (grunt) {
           endtag: '// endinjector'
         },
         files: {
-          '<%= yeoman.client %>/app/app.styl': [
-            '<%= yeoman.client %>/{app,components}/**/*.styl',
-            '!<%= yeoman.client %>/app/app.styl'
+          '<%= yeoman.client %>/app/app.scss': [
+            '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}',
+            '!<%= yeoman.client %>/app/app.{scss,sass}'
           ]
         }
       },
@@ -598,7 +598,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:stylus', 
+        'injector:sass', 
         'concurrent:server',
         'injector',
         'wiredep',
@@ -610,7 +610,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:stylus', 
+      'injector:sass', 
       'concurrent:server',
       'injector',
       'wiredep',
@@ -640,7 +640,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:stylus', 
+        'injector:sass', 
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -653,7 +653,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:stylus', 
+        'injector:sass', 
         'concurrent:test',
         'injector',
         'wiredep',
@@ -671,7 +671,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:stylus', 
+    'injector:sass', 
     'concurrent:dist',
     'injector',
     'wiredep',

@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('angularFullstackApp', [
+angular.module('dashboardSassApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  // 'app.directives'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -50,5 +51,20 @@ angular.module('angularFullstackApp', [
           $location.path('/login');
         }
       });
-    });
+    })
+  .controller('NavCtrl', [
+    '$scope', 'taskStorage', 'filterFilter'
+    function ($scope, taskStorage, filterFilter){
+
+      // # init
+      var tasks = $scope.tasks = taskStorage.get()
+      $scope.taskRemainingCount = filterFilter(tasks, {completed: false}).length
+
+      $scope.$on('taskRemaining:changed', function(event, count){
+        $scope.taskRemainingCount = count
+      })
+    }])
+
+
+
   });
