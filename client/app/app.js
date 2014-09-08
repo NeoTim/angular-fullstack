@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dashboardSassApp', [
+angular.module('app', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -52,19 +52,18 @@ angular.module('dashboardSassApp', [
         }
       });
     })
+  })
   .controller('NavCtrl', [
-    '$scope', 'taskStorage', 'filterFilter'
-    function ($scope, taskStorage, filterFilter){
+    '$scope', 'filterFilter',
+    function ($scope, filterFilter){
 
       // # init
-      var tasks = $scope.tasks = taskStorage.get()
-      $scope.taskRemainingCount = filterFilter(tasks, {completed: false}).length
+      // var tasks = $scope.tasks = taskStorage.get()
+      // $scope.taskRemainingCount = filterFilter(tasks, {completed: false}).length
 
-      $scope.$on('taskRemaining:changed', function(event, count){
-        $scope.taskRemainingCount = count
-      })
+      // $scope.$on('taskRemaining:changed', function(event, count){
+      //   $scope.taskRemainingCount = count
+      // })
     }])
 
 
-
-  });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dashboardSassApp')
+angular.module('app')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 

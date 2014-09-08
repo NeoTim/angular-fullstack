@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dashboardSassApp')
+angular.module('app')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};

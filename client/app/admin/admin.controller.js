@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dashboardSassApp')
+angular.module('app')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
     // Use the User $resource to fetch all users

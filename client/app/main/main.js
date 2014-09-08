@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dashboardSassApp')
+angular.module('app')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {
