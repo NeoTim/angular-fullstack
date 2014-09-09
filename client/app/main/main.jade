@@ -1,33 +1,56 @@
-div(ng-include='"components/navbar/navbar.html"')
+//- div(ng-include='"components/navbar/navbar.html"')
 
-header#banner.hero-unit
-  .container
-    h1 'Allo, 'Allo!
-    p.lead Kick-start your next web app with Angular Fullstack
+//- header#banner.hero-unit
+//-   .container
+//-     h1 'Allo, 'Allo!
+//-     p.lead Kick-start your next web app with Angular Fullstack
     img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
+div.row
+  div(ng-class="{ 'col-md-6': showDetails, 'col-md-12': !showDetails }")
 
-.container
-  .row
-    .col-lg-12
-      h1.page-header Features:
-      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
-        li
-          a(href='#', tooltip='{{thing.info}}')
-            | {{thing.name}}
-            button.close(type='button', ng-click='deleteThing(thing)') ×
+    div.panel
+      div.panel-body
+        ul.list-group
+          li.list-group-item.item-input(ng-repeat="(index, thing) in awesomeThings", data-ng-mouseenter="showControls = true", data-ng-mouseleave='showControls = false')
+            table
+              tr
+                td.button.bg-primary
+                  p {{index}}
+                td.button
+                  i.fa.fa-user(ng-show="showControls", ng-click="assignThing(thing)")
+                td.button
+                  i.fa.fa-trash-o(ng-show="showControls", ng-click="deleteThing(thing, index)")
+                td
+                  input.form-control.things(id="{{index}}" type='text', ng-model="thing.name", data-ng-blur="thing.save()", ng-keyup="keyPress($event, thing, index)", tj:focus)
+                td.button(ng-click="openDetails(thing)")
+                  i.fa.fa-chevron-right(ng-show="showControls")
+          li.list-group-item
+            form.thing-form
+              p.input-group
+                input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
+                span.input-group-btn
+                  button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
+  div(ng-show="showDetails")
+    div.panel
+      div.panel-body
+        {{details.name}}
+//- div
+//-   .col-lg-12
+//-     .row
+//-       .col-lg-12
+//-         h1.page-header Features:
+//-         ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
+//-           li
+//-             a(href='#', tooltip='{{thing.info}}')
+//-               | {{thing.name}}
+//-               button.close(type='button', ng-click='deleteThing(thing)') ×
 
-  form.thing-form
-    label Syncs in realtime across clients
-    p.input-group
-      input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
-      span.input-group-btn
-        button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
 
-footer.footer
-  .container
-    p
-      | Angular Fullstack v2.0.12
-      = ' | '
-      a(href='https://twitter.com/tyhenkel') @tyhenkel
-      = ' | '
-      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
+//- footer.footer
+//-   .container
+//-     p
+//-       | Angular Fullstack v2.0.12
+//-       = ' | '
+//-       a(href='https://twitter.com/tyhenkel') @tyhenkel
+//-       = ' | '
+//-       a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues

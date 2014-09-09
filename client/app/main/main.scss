@@ -28,3 +28,17 @@
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
+.item-input {
+    padding: 0px;
+}
+.item-input input {
+    border:none;
+}
+.item-input table {
+    width: 100%;
+}
+.item-input table tr td.button {
+    width:30px;
+    text-align:center;
+    cursor: pointer;
+}

@@ -9,7 +9,10 @@ angular.module('app.directives', []).directive('imgHolder', [
       }
     };
   }
-]).directive('customBackground', function() {
+])
+
+
+.directive('customBackground', function() {
   return {
     restrict: "A",
     controller: [

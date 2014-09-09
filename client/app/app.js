@@ -7,8 +7,21 @@ angular.module('app', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  // 'app.directives'
+  'app.directives',
+  'restangular',
+  'cfp.hotkeys'
 ])
+  .config(['RestangularProvider', function (RestangularProvider) {
+    RestangularProvider.setBaseUrl('/api');
+    RestangularProvider.setRestangularFields({
+      id: "_id",
+      route: "restangularRoute",
+      selfLink: "self.href"
+    });
+  }])
+  .config(function (hotkeysProvider) {
+    hotkeysProvider.includeCheatSheet = true;
+  })
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
       .otherwise('/');
@@ -53,6 +66,33 @@ angular.module('app', [
       });
     })
   })
+  .controller('AppCtrl', [
+  '$scope', '$location',
+  function($scope, $location){
+
+    $scope.isSpecificPage = function(){
+      var path = $location.path()
+      // return _.contains( [
+      //   '/404',
+      //   '/pages/500',
+      //   '/pages/login',
+      //   '/pages/signin',
+      //   '/pages/signin1',
+      //   '/pages/signin2',
+      //   '/pages/signup',
+      //   '/pages/signup1',
+      //   '/pages/signup2',
+      //   '/pages/forgot',
+      //   '/pages/lock-screen'
+      // ], path )
+    }
+    $scope.main ={
+
+      brand: 'Square',
+      name: 'Lisa Doe'// # those which uses i18n can not be replaced for now.
+    }
+  }])
+
   .controller('NavCtrl', [
     '$scope', 'filterFilter',
     function ($scope, filterFilter){

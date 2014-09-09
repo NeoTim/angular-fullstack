@@ -13,6 +13,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/angular-hotkeys/build/hotkeys.min.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -21,13 +22,28 @@
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
-  <body ng-app="app">
+  <body ng-app="app" id="app" data-custom-background data-offcanvas-nav>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div data-ng-controller="AppCtrl">
+        <div data-ng-hide="isSpecificPage()"
+             data-ng-cloak
+             class="no-print">
+            <section data-ng-include=" 'components/nav/header.html' "
+                 id="header" class="top-header"></section>
+
+            <aside data-ng-include=" 'components/nav/nav.html' "
+                 id="nav-container"></aside>
+        </div>
+
+        <div class="view-container">
+            <section data-ui-view id="content" class="animate-fade-up"></section>
+        </div>
+    </div>
 
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+    <!-- <div ui-view=""></div> -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -55,6 +71,9 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/jquery.slimscroll/jquery.slimscroll.min.js"></script>
+      <script src="bower_components/restangular/dist/restangular.js"></script>
+      <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
